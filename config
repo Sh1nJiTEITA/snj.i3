@@ -9,7 +9,8 @@ exec --no-startup-id dex --autostart --environment i3
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 # exec --no-startup-id picom --config "/home/snj/.config/picom/picom.sample.conf.conf"
-exec --no-startup-id picom -b
+# exec --no-startup-id picom --animations -b
+# exec --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -216,21 +217,28 @@ bindsym --release Shift+Print exec --no-startup-id "~/Scripts/screenshot.sh rect
 include ./windows.conf
 
 # #458588
-client.focused          #3C3836 #D79921 #3C3836 #3C3836 #D79921 
-client.focused          #3C3836 #D79921 #3C3836 #3C3836 #66605C
-client.focused_inactive #3C3836 #3C3836 #FFFFFF #484E50 #3C3836
-client.unfocused        #333333 #504945 #C5c8c6 #292D2E #3C3836
-client.urgent        #333333 #504945 #C5c8c6 #292D2E #3C3836
+# client.focused          #3C3836 #D79921 #3C3836 #3C3836 #D79921 
+# client.focused          #3C3836 #D79921 #3C3836 #3C3836 #66605C
+
+client.focused          #3C3836 #D79921 #3C3836 #3C3836 #1F1F1F
+
+# client.focused_inactive #3C3836 #3C3836 #FFFFFF #484E50 #3C3836
+client.focused_inactive          #3C3836 #D79921 #3C3836 #3C3836 #1F1F1F
+
+
+client.unfocused        #333333 #504945 #C5c8c6 #292D2E #131313
+
+# client.urgent        #333333 #504945 #C5c8c6 #292D2E #3C3836
 # client.urgent           #2F343A #900000 #FFFFFF #4D908F #900000
 # client.urgent          #3C3836 #D79921 #3C3836 #3C3836   #3C3836
 # client.placeholder      #8BFFB5 #0C0C0C #FFFFFF #000000 #0C0C0C
 # client.background       #FFFFFF
 
-gaps inner 10
-gaps top 2
+# gaps inner 10
+# gaps top 2
 # gaps bottom 10
-gaps right 2
-gaps left 2
+# gaps right 2
+# gaps left 2
 
 # workspace_layout tabbed
 smart_borders on
@@ -241,7 +249,7 @@ bindsym $mod+Shift+d exec "rofi -show ssh"
 
 bindsym $mod+x exec /home/$USER/.config/scripts/lock
 
-default_border none
+default_border pixel 1
 default_floating_border none
 
 exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 180 --pos 0x0 --primary
@@ -252,5 +260,11 @@ exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
 
 exec --no-startup-id xinput --set-prop 11 "libinput Accel Speed" -0.65
 
+
+# bindsym Print exec scrot ~/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png
+# bindsym Shift+Print exec scrot -s ~/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png
+bindsym Print exec scrot ~/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym Shift+Print exec scrot -s ~/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym exec --no-startup-id /usr/lib/lxqt-policykit-agent
 
 
