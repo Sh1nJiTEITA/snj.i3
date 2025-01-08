@@ -6,6 +6,8 @@ font pango:JetBrains Mono Nerd Font 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec_always --no-startup-id xset s off
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 # exec --no-startup-id picom --config "/home/snj/.config/picom/picom.sample.conf.conf"
@@ -258,7 +260,7 @@ exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 144 --pos 2560
 
 exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
 
-exec --no-startup-id xinput --set-prop 11 "libinput Accel Speed" -0.65
+exec --no-startup-id xinput --set-prop 10 "libinput Accel Speed" -0.65
 
 
 # bindsym Print exec scrot ~/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png
