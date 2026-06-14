@@ -132,13 +132,17 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 
-exec --no-startup-id /home/snj/.config/i3/startup.sh
+# exec --no-startup-id /home/snj/.config/i3/startup.sh
 
+assign [class="zen"] 1
+assign [class="Alacritty"] 2
+assign [class="Telegram"] 5
+assign [class="Thunderbird"] 8
 
-
-
-
-
+exec --no-startup-id zen-browser
+exec --no-startup-id alacritty -e tmux new-session zsh -c 'fastfetch && exec zsh'
+exec --no-startup-id Telegram
+exec --no-startup-id thunderbird
 
 
 # reload the configuration file
@@ -170,6 +174,9 @@ default_border pixel 1
 default_floating_border none
 
 exec_always --no-startup-id bash -c 'source /home/snj/.config/zsh/colors.bash && hsetroot -solid "$THEME_BG_BASE"'
+
+exec_always --no-startup-id bash -c '/home/snj/.config/polybar/launch.sh'
+
 
 
 
